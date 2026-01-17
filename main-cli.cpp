@@ -7,8 +7,6 @@
 #include <boost/program_options.hpp>
 
 
-//#include <boost> command line parser like cli edr
-
 int main(int argc, char* argv[]) {
 
     try {
