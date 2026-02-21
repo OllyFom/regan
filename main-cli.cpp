@@ -15,6 +15,8 @@ int main(int argc, char* argv[]) {
         CommandsFabric comm;
         auto command = comm.CreateCommand(try_command);
 
+        // TODO: запуск службы через service-manager для получения сообщений из драйвера
+
     } catch (const std::exception& e) {
         std::cout << "Something wrong" << std::endl;
     };

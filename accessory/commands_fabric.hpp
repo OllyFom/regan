@@ -3,8 +3,8 @@
 #include <memory>
 #include <optional>
 
-#include "../commands/cmds/analyser.hpp"
-#include "../commands/cmds/monitor.hpp"
+#include "analyser.hpp"
+#include "monitor.hpp"
 
 using std::string;
 using std::optional;

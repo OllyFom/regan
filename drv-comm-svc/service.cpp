@@ -7,3 +7,7 @@ int __cdecl _tmain(int argc, TCHAR *argv[])
 
     return 0;
 }
+
+VOID SvcInstall(void) {
+    
+}

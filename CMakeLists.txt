@@ -8,28 +8,23 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 find_package(Boost CONFIG REQUIRED COMPONENTS program_options)
-find_package(SQLiteCpp CONFIG REQUIRED)
 
 set(ACCESSORY_DIR ${CMAKE_SOURCE_DIR}/accessory)
 set(COMMANDS_DIR ${CMAKE_SOURCE_DIR}/commands)
-set(STORAGE_DIR ${COMMANDS_DIR}/cmds/storage)
 
 set(HEADERS
     ${COMMANDS_DIR}/cmds/analyser.hpp
     ${COMMANDS_DIR}/cmds/monitor.hpp
-    ${STORAGE_DIR}/storage.hpp
 )
 
 set(SOURCES
     ${CMAKE_SOURCE_DIR}/main-cli.cpp
     ${ACCESSORY_DIR}/commands_fabric.cpp
     ${COMMANDS_DIR}/cmds/analyser.cpp
-    ${STORAGE_DIR}/storage.cpp
 )
 
 add_executable(${REGAN_TARGET_NAME} ${SOURCES})
 
-target_link_libraries(${REGAN_TARGET_NAME} PRIVATE Boost::program_options SQLiteCpp)
 
 target_include_directories(${REGAN_TARGET_NAME} PRIVATE
     ${ACCESSORY_DIR}
@@ -38,6 +33,15 @@ target_include_directories(${REGAN_TARGET_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}
 )
 
+add_subdirectory(storage)
 add_subdirectory(svc-manager)
 add_subdirectory(svc-logger)
 add_subdirectory(drv-comm-svc)
+add_subdirectory(commands)
+
+target_link_libraries(${REGAN_TARGET_NAME} 
+    PRIVATE 
+        Boost::program_options
+    PUBLIC
+        pjt_commands
+)
