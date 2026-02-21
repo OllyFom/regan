@@ -8,15 +8,16 @@ ServiceMgr::ServiceMgr()
 {
     // std::cout << "Service Manager constructor" << std::endl;
     hMgr_ = OpenSCManagerA(
-            NULL,
-            NULL,
-            SC_MANAGER_ALL_ACCESS);
+        NULL,
+        NULL,
+        SC_MANAGER_ALL_ACCESS);
 }
 
-// TODO:  
-bool ServiceMgr::Running() {
+// TODO:
+bool ServiceMgr::Running()
+{
     return true;
-}  
+}
 
 bool ServiceMgr::Install()
 {
