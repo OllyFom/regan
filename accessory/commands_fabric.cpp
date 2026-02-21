@@ -1,10 +1,10 @@
 #include "commands_fabric.hpp"
 
 CommandsFabric::CommandsFabric() {
-    std::cout << "CommandsFabric constructor" << std::endl;
+    //std::cout << "CommandsFabric constructor" << std::endl;
 }
 CommandsFabric::~CommandsFabric() {
-    std::cout << "CommandsFabric destructor" << std::endl;
+    //std::cout << "CommandsFabric destructor" << std::endl;
 }
 
 std::unique_ptr<BaseCommand> CommandsFabric::CreateCommand(const optional<string> comm_name){

@@ -10,11 +10,11 @@ class MonitorCommand : public BaseCommand
 public:
     MonitorCommand()
     {
-        std::cout << "MonitorCommand constructor" << std::endl;
+        //std::cout << "MonitorCommand constructor" << std::endl;
     }
     ~MonitorCommand()
     {
-        std::cout << "MonitorCommand destructor" << std::endl;
+        //std::cout << "MonitorCommand destructor" << std::endl;
     }
 
 private:

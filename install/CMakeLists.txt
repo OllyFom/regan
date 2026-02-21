@@ -1,0 +1,1 @@
+#TODO: install file for new paths to service exe. regan.exe can be placed anywhere

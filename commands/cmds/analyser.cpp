@@ -2,7 +2,7 @@
 
 AnalyseCommand::AnalyseCommand()
 {
-    std::cout << "AnalyseCommand constructor" << std::endl;
+    //std::cout << "AnalyseCommand constructor" << std::endl;
 }
 
 void AnalyseCommand::GetFileList() {
@@ -15,5 +15,5 @@ void AnalyseCommand::AnalyzeFile(const std::string file_name) {
 }
 
 AnalyseCommand::~AnalyseCommand() {
-    std::cout << "AnalyseCommand destructor" << std::endl;
+    //std::cout << "AnalyseCommand destructor" << std::endl;
 }

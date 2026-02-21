@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-project(pjt_commands)
+project(pjct_commands)
 
 find_package(SQLiteCpp CONFIG REQUIRED)
 

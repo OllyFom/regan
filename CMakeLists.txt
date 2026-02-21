@@ -43,5 +43,7 @@ target_link_libraries(${REGAN_TARGET_NAME}
     PRIVATE 
         Boost::program_options
     PUBLIC
-        pjt_commands
+        pjct_commands
+        # TODO: unlink svc-manager, must be called by pjct_commands
+        svc-manager
 )
