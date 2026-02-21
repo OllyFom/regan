@@ -55,19 +55,20 @@ bool ServiceMgr::Install()
     {
         std::string func_name = "CreateServiceA";
         hSvc_ = CreateServiceA(
-            hMgr_,
-            SERVICE_NAME,
-            SERVICE_NAME,
-            SC_MANAGER_ALL_ACCESS,
-            SERVICE_WIN32_OWN_PROCESS,
-            SERVICE_AUTO_START,
-            SERVICE_ERROR_CRITICAL,
-            SERVICE_PATH,
-            NULL,
-            NULL,
-            NULL,
-            NULL,
-            NULL);
+                                hMgr_,
+                                SERVICE_NAME,
+                                SERVICE_NAME,
+                                SC_MANAGER_ALL_ACCESS,
+                                SERVICE_WIN32_OWN_PROCESS,
+                                SERVICE_AUTO_START,
+                                SERVICE_ERROR_CRITICAL,
+                                SERVICE_PATH,
+                                NULL,
+                                NULL,
+                                NULL,
+                                NULL,
+                                NULL
+                            );
         DWORD error = GetLastError();
 
         if (!CheckErrorCode(func_name, error))
