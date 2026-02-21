@@ -3,6 +3,10 @@ cmake_minimum_required(VERSION 3.15)
 project(regan CXX)
 set(REGAN_TARGET_NAME ${PROJECT_NAME})
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 find_package(Boost CONFIG REQUIRED COMPONENTS program_options)
 find_package(SQLiteCpp CONFIG REQUIRED)
 
@@ -34,6 +38,6 @@ target_include_directories(${REGAN_TARGET_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}
 )
 
-set_property(TARGET ${REGAN_TARGET_NAME} PROPERTY CXX_STANDARD 17)
-
-add_subdirectory(srv-manager)
+add_subdirectory(svc-manager)
+add_subdirectory(svc-logger)
+add_subdirectory(drv-comm-svc)
