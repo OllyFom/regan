@@ -23,4 +23,6 @@ class AnalyseCommand : public BaseCommand {
     std::map<std::string, std::string> files_; // key = hash -> value = name
     std::unique_ptr<Storage> storage_;
 
+    // Some output object (for pattern Bridge)
+
 };
