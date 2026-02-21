@@ -1,8 +1,7 @@
 #include "analyser.hpp"
 
-AnalyseCommand::AnalyseCommand() :
+AnalyseCommand::AnalyseCommand()
 {
-
     std::cout << "AnalyseCommand constructor" << std::endl;
 }
 

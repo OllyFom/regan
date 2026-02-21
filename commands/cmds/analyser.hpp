@@ -15,6 +15,7 @@ class AnalyseCommand : public BaseCommand {
     
     AnalyseCommand();
     ~AnalyseCommand();
+    
     private:
     void GetFileList(); //from DB
     void AnalyzeFile(const std::string file_name);

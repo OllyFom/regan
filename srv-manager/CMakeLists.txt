@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.15)
+
+set(SRV_MANAGER_TARGET_NAME srv-manager)
+project(SRV_MANAGER_TARGET_NAME)
+
+set(SRV_MANAGER_ROOT_DIR CMAKE_CURRENT_LIST_DIR)
+
+set(SRV_MANAGER_HEADERS)
+
+set(SRV_MANAGER_SOURCES)
+
+#add_library(SRV_MANAGER_TARGET_NAME STATIC SRV_MANAGER_HEADERS SRV_MANAGER_SOURCES)
+
+#target_include_directories()
+
+#target_link_libraries()

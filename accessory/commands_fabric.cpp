@@ -8,6 +8,7 @@ CommandsFabric::~CommandsFabric() {
 }
 
 std::unique_ptr<BaseCommand> CommandsFabric::CreateCommand(const optional<string> comm_name){
+
     if (!comm_name.has_value()) {
         std::cout << "Args has no command name" << std::endl;
         return nullptr;
@@ -29,6 +30,5 @@ std::unique_ptr<BaseCommand> CommandsFabric::CreateCommand(const optional<string
         std::cout << "Failed to found command by name";
         // some exception
         return nullptr;
-
     }
 }
