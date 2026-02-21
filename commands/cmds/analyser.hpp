@@ -2,7 +2,7 @@
 
 #include "../commands_base.hpp"
 
-#include "storage/storage.hpp"
+#include "storage.hpp"
 
 #include <map>
 #include <memory>
@@ -15,6 +15,7 @@ class AnalyseCommand : public BaseCommand {
     
     AnalyseCommand();
     ~AnalyseCommand();
+
     private:
     void GetFileList(); //from DB
     void AnalyzeFile(const std::string file_name);

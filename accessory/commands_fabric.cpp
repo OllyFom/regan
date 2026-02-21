@@ -1,13 +1,14 @@
 #include "commands_fabric.hpp"
 
 CommandsFabric::CommandsFabric() {
-    std::cout << "CommandsFabric constructor" << std::endl;
+    //std::cout << "CommandsFabric constructor" << std::endl;
 }
 CommandsFabric::~CommandsFabric() {
-    std::cout << "CommandsFabric destructor" << std::endl;
+    //std::cout << "CommandsFabric destructor" << std::endl;
 }
 
 std::unique_ptr<BaseCommand> CommandsFabric::CreateCommand(const optional<string> comm_name){
+
     if (!comm_name.has_value()) {
         std::cout << "Args has no command name" << std::endl;
         return nullptr;
@@ -29,6 +30,5 @@ std::unique_ptr<BaseCommand> CommandsFabric::CreateCommand(const optional<string
         std::cout << "Failed to found command by name";
         // some exception
         return nullptr;
-
     }
 }

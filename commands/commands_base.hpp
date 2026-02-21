@@ -8,9 +8,9 @@ namespace po = boost::program_options;
 class BaseCommand {
     public:
     BaseCommand() {
-        std::cout << "BaseCommand constructor" << std::endl;
+        //std::cout << "BaseCommand constructor" << std::endl;
     }
     ~BaseCommand() {
-        std::cout << "BaseCommand destructor" << std::endl;
+        //std::cout << "BaseCommand destructor" << std::endl;
     }
 };
