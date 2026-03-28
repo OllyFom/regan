@@ -12,3 +12,9 @@ Next:
 2) drv-comm-svc get simple message from driver and put into DB
    simple driver (no functional, only send message)
                 Use Communication port, need info about IoCompletionPort
+
+Settings and instruments for driver development:
+
+1) New SDK version
+2) WDK
+3) FindWdk.cmake 
