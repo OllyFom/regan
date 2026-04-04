@@ -15,12 +15,14 @@ class AnalyseCommand : public BaseCommand {
     
     AnalyseCommand();
     ~AnalyseCommand();
+    std::string AnalyzePsFiles(const std::string& ps_name);
 
     private:
     void GetFileList(); //from DB
-    void AnalyzeFile(const std::string file_name);
+    
 
 
+private:
     std::map<std::string, std::string> files_; // key = hash -> value = name
     std::unique_ptr<Storage> storage_;
 
