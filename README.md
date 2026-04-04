@@ -14,7 +14,7 @@ Service manager: svc-manager.lib
 Monitoring service: drv-comm-svc.exe
 
 Driver filesystem mini-filter - separated project
-Driver project repository: there is will be link yet
+   Driver project repository: there is will be link yet
 
 
 **Realisation plan:**
