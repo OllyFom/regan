@@ -21,6 +21,7 @@ class AnalyseCommand : public BaseCommand {
     void AnalyzeFile(const std::string file_name);
 
 
+private:
     std::map<std::string, std::string> files_; // key = hash -> value = name
     std::unique_ptr<Storage> storage_;
 
