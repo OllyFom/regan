@@ -1,17 +1,37 @@
+# Regan
+## Registry monitor for detect and analyse new bootstart executable files im system (Windows)
 
-Cli Functions: 
-- start monitor
-- enable monitor to bootstart
-- analyze files for processes (dll for this and use it):
-By pid from list
+Poc version of program, has no installer and auto setup for driver
 
-Next:
+Components:
 
-1) simple driver (no functional, only starting and removing from system)
+Command line executable file: regan.exe 
+Storage interface lib for sqlite: storage.lib
+Project logger: svc-logger.lib
+Commands parsing: pjct_commands.lib
+Service manager: svc-manager.lib
 
-2) drv-comm-svc get simple message from driver and put into DB
+Monitoring service: drv-comm-svc.exe
 
-3) commands
+Driver filesystem mini-filter - separated project
+Driver project repository: <will be link yet>
+
+
+Realisation plan:
+
+1. filter comunication port 
+    1.1 driver (server)
+    1.2 service (client)
+
+2. drv-comm-svc get simple message from driver and put into DB changed data
+
+3. Start/stop monitoring service (into commands)
+
+4. Get process info by pid
+
+5. Enable/disable monitor (bootstart)
+
+6. Testing
 
 Commands list:
 

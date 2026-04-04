@@ -1,4 +1,3 @@
-// RegistryRunMonitor.h
 #pragma once
 
 #include <windows.h>
