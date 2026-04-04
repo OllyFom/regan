@@ -23,6 +23,7 @@ void ShowGeneralHelp(const std::vector<std::string>& commands) {
 
 int main(int argc, char* argv[]) {
     try {
+<<<<<<< HEAD
 
         po::options_description general_desc("General options");
         general_desc.add_options()
@@ -45,6 +46,19 @@ int main(int argc, char* argv[]) {
         if (vm.count("version")) {
             std::cout << "Regan v1.0.0\n";
             return 0;
+=======
+        
+        std::string try_command = "analyse";
+        CommandsFabric comm;
+        auto command = comm.CreateCommand(try_command);
+        // TODO: запуск службы через monitor command (service-manager) для получения сообщений из драйвера
+        ServiceMgr svc_mgr;
+        if (!svc_mgr.Install()) {
+            throw std::runtime_error("Failed to install service");
+        }
+        if (!svc_mgr.Uninstall()) {
+            throw std::runtime_error("Failed to uninstall service");
+>>>>>>> 21a32536845433957e86e52f2a4e17c8cbe16810
         }
         
         if (!vm.count("command") || vm["command"].as<std::string>().empty()) {

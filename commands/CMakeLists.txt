@@ -11,6 +11,7 @@ set(COMMANDS_ROOT_DIR ${CMAKE_CURRENT_LIST_DIR})
 set(COMMANDS_HEADERS
     ${COMMANDS_ROOT_DIR}/cmds/monitor.hpp
     ${COMMANDS_ROOT_DIR}/cmds/analyser.hpp
+    ${COMMANDS_ROOT_DIR}/cmds/accessory/prefetch_parser.hpp
     ${COMMANDS_ROOT_DIR}/commands_base.hpp
 )
 
