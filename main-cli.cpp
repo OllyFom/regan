@@ -18,7 +18,6 @@ int main(int argc, char* argv[]) {
         std::string try_command = "analyse";
         CommandsFabric comm;
         auto command = comm.CreateCommand(try_command);
-
         // TODO: запуск службы через monitor command (service-manager) для получения сообщений из драйвера
         ServiceMgr svc_mgr;
         if (!svc_mgr.Install()) {

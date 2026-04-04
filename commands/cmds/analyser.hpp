@@ -15,10 +15,11 @@ class AnalyseCommand : public BaseCommand {
     
     AnalyseCommand();
     ~AnalyseCommand();
+    std::string AnalyzePsFiles(const std::string& ps_name);
 
     private:
     void GetFileList(); //from DB
-    void AnalyzeFile(const std::string file_name);
+    
 
 
 private:
