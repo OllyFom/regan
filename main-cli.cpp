@@ -5,10 +5,12 @@
 #include "accessory/commands_fabric.hpp"
 #include "accessory/parse_args.hpp"
 #include "commands_base.hpp"
+#include "windows.h"
 
 #include <boost/program_options.hpp>
 
 #include <string>
+
 namespace po = boost::program_options;
 
 void ShowGeneralHelp(const std::vector<std::string>& commands) {
@@ -22,8 +24,10 @@ void ShowGeneralHelp(const std::vector<std::string>& commands) {
 }
 
 int main(int argc, char* argv[]) {
+
+    SetConsoleOutputCP(1251);
+    
     try {
-<<<<<<< HEAD
 
         po::options_description general_desc("General options");
         general_desc.add_options()
@@ -46,19 +50,6 @@ int main(int argc, char* argv[]) {
         if (vm.count("version")) {
             std::cout << "Regan v1.0.0\n";
             return 0;
-=======
-        
-        std::string try_command = "analyse";
-        CommandsFabric comm;
-        auto command = comm.CreateCommand(try_command);
-        // TODO: запуск службы через monitor command (service-manager) для получения сообщений из драйвера
-        ServiceMgr svc_mgr;
-        if (!svc_mgr.Install()) {
-            throw std::runtime_error("Failed to install service");
-        }
-        if (!svc_mgr.Uninstall()) {
-            throw std::runtime_error("Failed to uninstall service");
->>>>>>> 21a32536845433957e86e52f2a4e17c8cbe16810
         }
         
         if (!vm.count("command") || vm["command"].as<std::string>().empty()) {
@@ -82,7 +73,7 @@ int main(int argc, char* argv[]) {
         
         // Добавляем общие опции для полного парсинга
         po::options_description full_desc("Regan Security Tool");
-        full_desc.add(general_desc).add(cmd_desc);
+        full_desc.add(cmd_desc);
         
         po::variables_map cmd_vm;
         po::store(po::parse_command_line(argc, argv, full_desc), cmd_vm);

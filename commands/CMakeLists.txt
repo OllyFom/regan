@@ -16,7 +16,7 @@ set(COMMANDS_HEADERS
 )
 
 set(COMMANDS_SOURCES
-    #${COMMANDS_ROOT_DIR}/cmds/analyser.cpp
+    ${COMMANDS_ROOT_DIR}/cmds/analyser.cpp
     ${COMMANDS_ROOT_DIR}/cmds/monitor.cpp
 )
 

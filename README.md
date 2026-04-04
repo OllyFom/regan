@@ -52,6 +52,11 @@ Commands list:
 3. Get report about bootstart execution file by process name
 
 ```powershell
-.\regan analyse --name "process_name.exe"
+.\regan analyse --name="process_name.exe"
 ```
 
+3. Get report about bootstart execution file by process pid
+
+```powershell
+.\regan.exe analyse --pid="1"
+```
