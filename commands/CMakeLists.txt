@@ -15,7 +15,8 @@ set(COMMANDS_HEADERS
 )
 
 set(COMMANDS_SOURCES
-    ${COMMANDS_ROOT_DIR}/cmds/analyser.cpp
+    #${COMMANDS_ROOT_DIR}/cmds/analyser.cpp
+    ${COMMANDS_ROOT_DIR}/cmds/monitor.cpp
 )
 
 add_library(${COMMANDS_TARGET_NAME} STATIC ${COMMANDS_HEADERS} ${COMMANDS_SOURCES})
@@ -29,6 +30,7 @@ target_include_directories(${COMMANDS_TARGET_NAME}
 target_link_libraries(${COMMANDS_TARGET_NAME}
     PUBLIC
         storage
+        svc-manager
     PRIVATE 
         Boost::program_options
 )

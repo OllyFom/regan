@@ -12,15 +12,14 @@ find_package(Boost CONFIG REQUIRED COMPONENTS program_options)
 set(ACCESSORY_DIR ${CMAKE_SOURCE_DIR}/accessory)
 set(COMMANDS_DIR ${CMAKE_SOURCE_DIR}/commands)
 
-set(HEADERS
-    ${COMMANDS_DIR}/cmds/analyser.hpp
-    ${COMMANDS_DIR}/cmds/monitor.hpp
-)
+# set(HEADERS
+#     ${COMMANDS_DIR}/cmds/analyser.hpp
+#     ${COMMANDS_DIR}/cmds/monitor.hpp
+# )
 
 set(SOURCES
     ${CMAKE_SOURCE_DIR}/main-cli.cpp
-    ${ACCESSORY_DIR}/commands_fabric.cpp
-    ${COMMANDS_DIR}/cmds/analyser.cpp
+    #${ACCESSORY_DIR}/commands_fabric.cpp
 )
 
 add_executable(${REGAN_TARGET_NAME} ${SOURCES})
