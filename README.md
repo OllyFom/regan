@@ -1,61 +1,89 @@
+# Regan
+## Registry monitor for detect and analyse new bootstart executable files in system (Windows)
 
-Cli Functions: 
-- start monitor
-- enable monitor to bootstart
-- analyze files for processes (dll for this and use it):
-By pid from list
+Poc version of program, has no installer and auto setup for driver
 
-Next:
+**Components:**
 
-1) simple driver (no functional, only starting and removing from system)
+Command line executable file: regan.exe 
+Storage interface lib for sqlite: storage.lib
+Project logger: svc-logger.lib
+Commands parsing: pjct_commands.lib
+Service manager: svc-manager.lib
 
-2) drv-comm-svc get simple message from driver and put into DB
+Monitoring service: drv-comm-svc.exe
 
-3) commands
+Driver filesystem mini-filter - separated project
 
-Commands list:
+**Building:**
 
-## Monitoring
+```cmake
+
+cmake -B E:\some-builds-dir\regan -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake
+
+cmake --build E:\some-builds-dir\regan
+
+```
+
+**Realisation plan:**
+
+1. filter comunication port 
+    1.1 driver (server)
+    1.2 service (client)
+
+2. drv-comm-svc get simple message from driver and put into DB changed data
+
+3. Start/stop monitoring service (into commands)
+
+4. Get process info by pid
+
+5. Enable/disable monitor (bootstart)
+
+6. Testing
+
+## Commands list:
+
+### Monitoring
 
 1. Get monitoring status
 
 ```powershell
-.\regan monitor --status
+.\regan.exe monitor --status
 ```
 
 2. Start monitoring
 
 ```powershell
-.\regan monitor --start
+.\regan.exe monitor --start
 ```
 
 3. Stop monitoring
 
 ```powershell
-.\regan monitor --stop
+.\regan.exe monitor --stop
 ```
 
-## Analyse
+### Analyse
 
 1. Get new bootstart execution files list
 
 ```powershell
-.\regan analyse --get-list
+.\regan.exe analyse --get-list
 ```
 
 2. Get report about all bootstart execution files from list
 
 ```powershell
-.\regan analyse --all
+.\regan.exe analyse --all
 ```
 
 3. Get report about bootstart execution file by process name
 
 ```powershell
-.\regan analyse --name="process_name.exe"
+.\regan.exe analyse --name="process_name.exe"
 ```
 
-3. Get report about bootstart execution file by process pid
+4. Get report about bootstart execution file by process pid
 
 ```powershell
 .\regan.exe analyse --pid="1"
