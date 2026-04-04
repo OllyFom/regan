@@ -1,5 +1,5 @@
 # Regan
-## Registry monitor for detect and analyse new bootstart executable files im system (Windows)
+## Registry monitor for detect and analyse new bootstart executable files in system (Windows)
 
 Poc version of program, has no installer and auto setup for driver
 
