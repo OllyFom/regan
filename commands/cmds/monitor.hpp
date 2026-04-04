@@ -1,25 +1,29 @@
+
 #pragma once
-#include "../commands_base.hpp"
 
-#define START_OPTION "start"
-#define ENABLE_SERVICE_OPTION "enable"
-#define DISABLE_SERVICE_OPTION "disable"
+#include <iostream>
 
-class MonitorCommand : public BaseCommand
-{
+#include "commands_base.hpp"
+
+class MonitorCommand : public BaseCommand {
 public:
-    MonitorCommand()
-    {
-        //std::cout << "MonitorCommand constructor" << std::endl;
-    }
-    ~MonitorCommand()
-    {
-        //std::cout << "MonitorCommand destructor" << std::endl;
-    }
-
+    std::string GetName() const override;
+    std::string GetDescription() const override;
+    
+    void AddOptions(po::options_description& desc) override;
+    
+    int Execute(const po::variables_map& vm);
+    
 private:
-    void DisableMonitorService();
-    void EnableMonitorService();
-    void StartMonitor();
-    void StopMonitor();
+    void ShowHelp();
+    
+    int CmdStatus();
+    
+    int CmdStart();
+    
+    int CmdStop();
+    
+    int CmdEnableBoot();
+    
+    int CmdDisableBoot();
 };

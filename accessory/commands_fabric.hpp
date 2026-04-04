@@ -1,25 +1,45 @@
 #pragma once
-#include <iostream>
+#include "commands_base.hpp"
+#include "cmds/monitor.hpp"
+#include "cmds/analyser.hpp"
 #include <memory>
-#include <optional>
+#include <unordered_map>
+#include <functional>
 
-#include "analyser.hpp"
-#include "monitor.hpp"
-
-using std::string;
-using std::optional;
-
-class CommandsFabric {
-    public: 
-
-    CommandsFabric();
+class CommandFactory {
+public:
+    using CommandCreator = std::function<std::unique_ptr<BaseCommand>()>;
     
-    static std::unique_ptr<BaseCommand> CreateCommand(const optional<string> command_name); 
-
-    CommandsFabric(const CommandsFabric&) = delete;
-    CommandsFabric(CommandsFabric&&) = delete;
-    CommandsFabric& operator=(const CommandsFabric&) = delete;
-    CommandsFabric& operator=(CommandsFabric&&) = delete;
-    ~CommandsFabric();
-   
+    static CommandFactory& Instance() {
+        static CommandFactory instance;
+        return instance;
+    }
+    
+    void Register(const std::string& name, CommandCreator creator) {
+        creators_[name] = std::move(creator);
+    }
+    
+    std::unique_ptr<BaseCommand> Create(const std::string& name) {
+        auto it = creators_.find(name);
+        if (it == creators_.end()) {
+            return nullptr;
+        }
+        return it->second();
+    }
+    
+    std::vector<std::string> GetCommandNames() const {
+        std::vector<std::string> names;
+        for (const auto& [name, _] : creators_) {
+            names.push_back(name);
+        }
+        return names;
+    }
+    
+private:
+    CommandFactory() {
+        Register("monitor", []() { return std::make_unique<MonitorCommand>(); });
+        Register("analyse", []() { return std::make_unique<AnalyseCommand>(); });
+    }
+    
+    std::unordered_map<std::string, CommandCreator> creators_;
 };

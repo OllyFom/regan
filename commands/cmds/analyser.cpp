@@ -6,11 +6,104 @@
 #include <algorithm>
 
 #include "accessory/prefetch_parser.hpp"
+#include "storage.hpp"
 
 std::vector<std::string> GetPrefetchFileNamesByPsName(const std::string &ps_name);
 std::string FormatTimestamp(time_t timestamp);
 bool IsSuspiciousPath(const std::wstring &path);
-std::string WStringToString(const std::wstring& wstr);
+std::string WStringToString(const std::wstring &wstr);
+
+std::string AnalyseCommand::GetName() const
+{
+    return "analyse";
+}
+
+std::string AnalyseCommand::GetDescription() const
+{
+    return "Analyse bootstart execution files";
+}
+
+void AnalyseCommand::AddOptions(po::options_description &desc)
+{
+    desc.add_options()("get-list", "Get new bootstart execution files list")("all", "Get report about all bootstart execution files")("name", po::value<std::string>(), "Get report by process name (e.g. --name \"notepad.exe\")")("pid", po::value<std::vector<int>>()->multitoken(), "Analyse files for processes by PID list")("help,h", "Show help for this command");
+}
+
+int AnalyseCommand::Execute(const po::variables_map &vm)
+{
+    if (vm.count("help"))
+    {
+        ShowHelp();
+        return 0;
+    }
+
+    if (vm.count("get-list"))
+    {
+        return CmdGetList();
+    }
+    if (vm.count("all"))
+    {
+        return CmdAll();
+    }
+    if (vm.count("name"))
+    {
+        return CmdByName(vm["name"].as<std::string>());
+    }
+    if (vm.count("pid"))
+    {
+        return CmdByPid(vm["pid"].as<std::vector<int>>());
+    }
+
+    std::cerr << "[!] No command specified. Use --help for usage.\n";
+    return 1;
+}
+
+void AnalyseCommand::ShowHelp()
+{
+    std::cout << "Usage: regan analyse [OPTIONS]\n\n";
+    std::cout << "Options:\n";
+    std::cout << "  --get-list          Get new bootstart execution files list\n";
+    std::cout << "  --all               Get report about all bootstart execution files\n";
+    std::cout << "  --name <process>    Get report by process name\n";
+    std::cout << "  --pid <pids...>     Analyse files for processes by PID list\n";
+    std::cout << "  -h, --help          Show this help\n";
+}
+
+int AnalyseCommand::CmdGetList()
+{
+    std::cout << "[*] Getting new bootstart execution files...\n";
+    // TODO: Вызов RegistryRunMonitor::GetNewEntries()
+    std::cout << "[+] List retrieved\n";
+    return 0;
+}
+
+int AnalyseCommand::CmdAll()
+{
+    std::cout << "[*] Generating full report...\n";
+    // TODO: Генерация полного отчёта по всем записям
+    std::cout << "[+] Report generated\n";
+    return 0;
+}
+
+int AnalyseCommand::CmdByName(const std::string &ps_name)
+{
+    std::cout << "[*] Analysing process: " << ps_name << "\n";
+    // TODO: сделать запись в файл для всех данных анализа
+    std::cout << AnalysePsFiles(ps_name) << std::endl;
+    std::cout << "[+] Analysis complete\n";
+    return 0;
+}
+
+int AnalyseCommand::CmdByPid(const std::vector<int> &pids)
+{
+    std::cout << "[*] Analysing " << pids.size() << " process(es) by PID...\n";
+    for (int pid : pids)
+    {
+        std::cout << "  - PID: " << pid << "\n";
+        // TODO: Получение имени процесса по PID и вызов анализа
+    }
+    std::cout << "[+] Analysis complete\n";
+    return 0;
+}
 
 AnalyseCommand::AnalyseCommand()
 {
@@ -23,7 +116,7 @@ void AnalyseCommand::GetFileList()
     // Fill the map
 }
 
-std::string AnalyseCommand::AnalyzePsFiles(const std::string &ps_name)
+std::string AnalyseCommand::AnalysePsFiles(const std::string &ps_name)
 {
     std::stringstream report;
 
@@ -70,7 +163,7 @@ std::string AnalyseCommand::AnalyzePsFiles(const std::string &ps_name)
                 all_used_files.insert(narrow_file);
 
                 if (IsSuspiciousPath(wfile))
-                { 
+                {
                     suspicious_files.insert(narrow_file);
                 }
             }
@@ -95,7 +188,7 @@ std::string AnalyseCommand::AnalyzePsFiles(const std::string &ps_name)
 
     for (const auto &exec : executions)
     {
-        report << "    • " << exec.prefetch_file << "\n";
+        report << "Prefetch file path:  " << exec.prefetch_file << "\n";
         report << "      Last run: " << FormatTimestamp(exec.exec_time) << "\n";
         report << "      Run count in file: " << exec.run_count << "\n";
     }
@@ -148,7 +241,7 @@ std::string AnalyseCommand::AnalyzePsFiles(const std::string &ps_name)
         for (const auto &file : suspicious_files)
         {
             std::string narrow_file(file.begin(), file.end());
-            report << "    • " << narrow_file << "\n";
+            report << "file path: " << narrow_file << "\n";
         }
     }
     report << "\n";
@@ -276,8 +369,10 @@ bool IsSuspiciousPath(const std::wstring &path)
     return false;
 }
 /// @brief Преобразование wstring к string
-std::string WStringToString(const std::wstring& wstr) {
-    if (wstr.empty()) return "";
+std::string WStringToString(const std::wstring &wstr)
+{
+    if (wstr.empty())
+        return "";
     int size_needed = WideCharToMultiByte(CP_UTF8, 0, wstr.data(), (int)wstr.size(), nullptr, 0, nullptr, nullptr);
     std::string result(size_needed, 0);
     WideCharToMultiByte(CP_UTF8, 0, wstr.data(), (int)wstr.size(), result.data(), size_needed, nullptr, nullptr);

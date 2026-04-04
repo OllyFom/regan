@@ -1,31 +1,33 @@
 #pragma once
+#include "commands_base.hpp"
+#include <iostream>
+#include <vector>
 
-#include "../commands_base.hpp"
+class AnalyseCommand : public BaseCommand
+{
+public:
+    std::string GetName() const override;
+    std::string GetDescription() const override;
 
-#include "storage.hpp"
+    void AddOptions(po::options_description &desc) override;
 
-#include <map>
-#include <memory>
+    int Execute(const po::variables_map &vm) override;
 
-#define FILE_OPTION "file"
-#define PROCESS_OPTION "pid"
-
-class AnalyseCommand : public BaseCommand {
-    public:
-    
     AnalyseCommand();
     ~AnalyseCommand();
-    std::string AnalyzePsFiles(const std::string& ps_name);
-
-    private:
-    void GetFileList(); //from DB
-    
-
 
 private:
-    std::map<std::string, std::string> files_; // key = hash -> value = name
-    std::unique_ptr<Storage> storage_;
+    void GetFileList();
 
-    // Some output object (for pattern Bridge)
+    void ShowHelp();
 
+    int CmdGetList();
+
+    int CmdAll();
+
+    int CmdByName(const std::string &ps_name);
+
+    int CmdByPid(const std::vector<int> &pids);
+
+    std::string AnalysePsFiles(const std::string &ps_name);
 };
