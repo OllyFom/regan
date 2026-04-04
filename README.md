@@ -15,8 +15,15 @@ Monitoring service: drv-comm-svc.exe
 
 Driver filesystem mini-filter - separated project
 
-Driver project repository: there is will be link yet
+**Building:**
 
+```cmake
+
+cmake -B E:\some-builds-dir\regan -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake
+
+cmake --build E:\some-builds-dir\regan
+
+```
 
 **Realisation plan:**
 
@@ -41,19 +48,19 @@ Driver project repository: there is will be link yet
 1. Get monitoring status
 
 ```powershell
-.\regan monitor --status
+.\regan.exe monitor --status
 ```
 
 2. Start monitoring
 
 ```powershell
-.\regan monitor --start
+.\regan.exe monitor --start
 ```
 
 3. Stop monitoring
 
 ```powershell
-.\regan monitor --stop
+.\regan.exe monitor --stop
 ```
 
 ### Analyse
@@ -61,19 +68,19 @@ Driver project repository: there is will be link yet
 1. Get new bootstart execution files list
 
 ```powershell
-.\regan analyse --get-list
+.\regan.exe analyse --get-list
 ```
 
 2. Get report about all bootstart execution files from list
 
 ```powershell
-.\regan analyse --all
+.\regan.exe analyse --all
 ```
 
 3. Get report about bootstart execution file by process name
 
 ```powershell
-.\regan analyse --name="process_name.exe"
+.\regan.exe analyse --name="process_name.exe"
 ```
 
 4. Get report about bootstart execution file by process pid
