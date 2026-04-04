@@ -3,7 +3,7 @@
 
 Poc version of program, has no installer and auto setup for driver
 
-Components:
+**Components:**
 
 Command line executable file: regan.exe 
 Storage interface lib for sqlite: storage.lib
@@ -17,7 +17,7 @@ Driver filesystem mini-filter - separated project
 Driver project repository: <will be link yet>
 
 
-Realisation plan:
+**Realisation plan:**
 
 1. filter comunication port 
     1.1 driver (server)
@@ -33,9 +33,9 @@ Realisation plan:
 
 6. Testing
 
-Commands list:
+## Commands list:
 
-## Monitoring
+### Monitoring
 
 1. Get monitoring status
 
@@ -55,7 +55,7 @@ Commands list:
 .\regan monitor --stop
 ```
 
-## Analyse
+### Analyse
 
 1. Get new bootstart execution files list
 
@@ -75,7 +75,7 @@ Commands list:
 .\regan analyse --name="process_name.exe"
 ```
 
-3. Get report about bootstart execution file by process pid
+4. Get report about bootstart execution file by process pid
 
 ```powershell
 .\regan.exe analyse --pid="1"
